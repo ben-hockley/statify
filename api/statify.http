@@ -1,0 +1,48 @@
+### Find ALl Games
+GET http://localhost:8080/api/games
+
+### Find Game By ID
+GET http://localhost:8080/api/games/1
+
+
+### Post new Game
+POST http://localhost:8080/api/games
+Content-Type: application/json
+
+{
+  "id": 11,
+  "homeOrAway": "HOME",
+  "opponent": "Mavericks",
+  "date": "2024-02-27",
+  "pointsFor": 123,
+  "pointsAgainst": 100
+}
+
+### Post new game with invalid scores (PointsFor is negative)
+POST http://localhost:8080/api/games
+Content-Type: application/json
+
+{
+    "id": 15,
+    "homeOrAway": "HOME",
+    "opponent": "Mavericks",
+    "date": "2024-02-27",
+    "pointsFor": -123,
+    "pointsAgainst": 100
+}
+
+### Update an existing Game
+PUT http://localhost:8080/api/games/0
+Content-Type: application/json
+
+{
+  "id": 1,
+  "homeOrAway": "HOME",
+  "opponent": "Mavericks",
+  "date": "2024-02-27",
+  "pointsFor": 123,
+  "pointsAgainst": 100
+}
+
+### Delete a Game
+DELETE http://localhost:8080/api/games/1
