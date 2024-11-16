@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>New game</title>
@@ -7,28 +7,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<form action="" method="post">
+<form action="#" th:action="@{/api/games/new}" th:object="${game}" method="post">
     <div class="container">
         <a href="/api/games"><i class="fa-solid fa-house"></i></a>
         <h1>New game</h1>
         <div class="row">
             <div class="col">
                 <label for="date">Date</label>
-                <input type="date" class="form-control" id="date" name="date">
+                <input type="date" class="form-control" id="date" name="date" th:field="*{date}" />
             </div>
             <div class="col">
                 <label for="opponent">Opponent</label>
-                <input type="text" class="form-control" id="opponent" name="opponent">
+                <input type="text" class="form-control" id="opponent" name="opponent" th:field="*{opponent}">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="pointsFor">Points For</label>
-                <input type="number" class="form-control" id="pointsFor" name="pointsFor">
+                <input type="number" class="form-control" id="pointsFor" name="pointsFor" th:field="*{pointsFor}">
             </div>
             <div class="col">
                 <label for="pointsAgainst">Points Against</label>
-                <input type="number" class="form-control" id="pointsAgainst" name="pointsAgainst">
+                <input type="number" class="form-control" id="pointsAgainst" name="pointsAgainst" th:field="*{pointsAgainst}">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

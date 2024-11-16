@@ -1,13 +1,17 @@
 package com.benhockley.statify.game;
 
 import jakarta.validation.Valid;
+import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/games") // all methods inside fall under this
@@ -43,15 +47,26 @@ public class GameController {
 
     @GetMapping("/new")
     public ModelAndView newGameForm() {
-        // templates/newGame.html
-        return new ModelAndView("newGame");
+        ModelAndView modelAndView = new ModelAndView("newGame"); // templates/newGame.html
+        modelAndView.addObject("game", new GameObject());
+        return modelAndView; // templates/newGame.html
     }
 
     //post
+
+    int activeId = 0; // increment this for each new game
+
     @ResponseStatus(HttpStatus.CREATED) // 201
     @PostMapping("/new")
-    void postNewGame(@Valid @RequestBody Game game){
-        gameRepository.create(game);
+    public ModelAndView gameSubmit(@ModelAttribute GameObject game, Model model) {
+        model.addAttribute("game", game);
+
+        Random rand = new Random();
+        gameRepository.create(new Game(activeId, HomeOrAway.HOME, game.getOpponent(), game.getDate(), game.getPointsFor(), game.getPointsAgainst()));
+
+        activeId++;
+
+        return listAllGames();
     }
 
     //put
