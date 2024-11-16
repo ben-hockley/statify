@@ -2,7 +2,7 @@
 GET http://localhost:8080/api/games
 
 ### Find Game By ID
-GET http://localhost:8080/api/games/1
+GET http://localhost:8080/api/games/11
 
 
 ### Post new Game

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Game;
 CREATE TABLE IF NOT EXISTS Game (
     id INT,
     home_or_away char(4),
@@ -6,4 +7,4 @@ CREATE TABLE IF NOT EXISTS Game (
     points_for INT,
     points_against INT,
     PRIMARY KEY (id)
-);
+) engine = InnoDB;

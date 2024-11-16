@@ -41,9 +41,15 @@ public class GameController {
         return modelAndView;
     }
 
+    @GetMapping("/new")
+    public ModelAndView newGameForm() {
+        // templates/newGame.html
+        return new ModelAndView("newGame");
+    }
+
     //post
     @ResponseStatus(HttpStatus.CREATED) // 201
-    @PostMapping
+    @PostMapping("/new")
     void postNewGame(@Valid @RequestBody Game game){
         gameRepository.create(game);
     }
